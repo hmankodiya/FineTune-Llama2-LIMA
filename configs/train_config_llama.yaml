@@ -1,0 +1,72 @@
+dataset_config:
+  desc: LIMA Instruct Finetunning Dataset
+  train:
+    dataset_path: GAIR/lima
+    sub_split_size: null
+
+tokenizer_config:
+  tokenizer_name: llama2
+  tokenizer_path: "meta-llama/Llama-2-7b-hf"
+  special_token_kwargs:
+    pad_token: eos_token
+    additional_tokens: 
+      - EOT_TOKEN
+
+model_config:
+  model_name: llama2-base
+  base_model_path: meta-llama/Llama-2-7b-hf
+  force_download: false
+  device_map: cuda:0
+  bnb_config:
+    load_in_4bit: true
+    bnb_4bit_quant_type: nf4
+    bnb_4bit_compute_dtype: "float16"
+    bnb_4bit_use_double_quant: false
+
+# lora goes here
+lora_config:
+  r: 64
+  lora_alpha: 64
+  lora_dropout: 0.1
+  bias: "none"
+  task_type: CAUSAL_LM
+  target_modules:
+    - q_proj
+    - up_proj
+    - o_proj
+    - k_proj
+    - down_proj
+    - gate_proj
+    - v_proj
+
+sft_trainer_config:
+  # resume_from_checkpoint
+  resume_from_checkpoint: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-156
+  # save related
+  save_trained_model: true
+  save_strategy: 'epoch'
+  save_total_limit: 2
+  # save_steps: 25
+  # log outputs
+  run_name: llama2_instruct_fulltrain_1
+  report_to: tensorboard
+  output_dir: "./TrainingLogs/"
+  overwrite_output_dir: true
+  # train args
+  max_seq_length: 2048
+  fp16: true
+  do_train: true
+  num_train_epochs: 15
+  per_device_train_batch_size: 20
+  prediction_loss_only: false
+  packing: False
+  # log configs
+  logging_strategy: steps
+  logging_steps: 1
+  # train configs
+  max_grad_norm: 0.3
+  seed: random
+  warmup_ratio: 0.05
+  learning_rate: 1.0E-5
+  lr_scheduler_type: cosine
+  optim: paged_adamw_32bit

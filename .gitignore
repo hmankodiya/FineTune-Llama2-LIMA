@@ -1,3 +1,11 @@
+# custom
+TrainingLogs/checkpoint-*
+_*
+rough.ipynb
+generated_outs
+
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
