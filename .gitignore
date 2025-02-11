@@ -1,5 +1,5 @@
 # custom
-TrainingLogs/checkpoint-*
+TrainingLogs/*
 _*
 rough.ipynb
 generated_outs
