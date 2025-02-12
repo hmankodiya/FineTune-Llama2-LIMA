@@ -39,8 +39,9 @@ def manage_tokens(tokenizer, special_token_kwargs):
     pad_token = special_token_kwargs.get("pad_token", tokenizer.eos_token)
     if pad_token == "eos_token":
         pad_token = tokenizer.eos_token
+    else:
+        tokenizer.add_special_tokens({"pad_token": pad_token})
 
-    tokenizer.pad_token = pad_token
     additional_tokens = special_token_kwargs.get("additional_tokens", [])
     if len(additional_tokens):
         additional_tokens = list(
@@ -56,7 +57,7 @@ def load_pretrained_llama2_tokenizer(
     Loads a pre-trained Llama2 tokenizer and adds a special padding token.
     """
     tokenizer_config = kwargs.pop("config", {})
-    special_token_kwargs = kwargs.pop("special_token_kwargs", {})
+    special_token_kwargs = tokenizer_config.pop("special_token_kwargs", {})
 
     if not isinstance(tokenizer_config, dict):
         logger.error(
@@ -81,7 +82,7 @@ def load_pretrained_base_llama2_model(
     **kwargs,
 ):
     config = kwargs.pop("config", {})
-    bnb_config = config.pop("bnb_config", {})
+    bnb_config = config.pop("bnb_config", None)
     pad_token_id = config.pop("pad_token_id", None)
     tokenizer_length = config.pop("tokenizer_length", None)
 
@@ -91,7 +92,7 @@ def load_pretrained_base_llama2_model(
     elif isinstance(bnb_config, BitsAndBytesConfig):
         pass
 
-    else:
+    elif bnb_config is not None:
         raise ValueError(
             f"Expected type dict() or BitsAndBytesConfig() for bnb_config found {type(bnb_config)}"
         )
@@ -140,10 +141,9 @@ TOKENIZER_DICT = {
         {
             "tokenizer_path": "meta-llama/Llama-2-7b-hf",
             "config": {},
-            "special_token_kwargs": {
-                "pad_token": "eos_token",
-                "additional_tokens": ["EOT_TOKEN"],
-            },
+            # "special_token_kwargs": {
+            #     "pad_token": "eos_token",
+            # },
         },
     ),
 }
@@ -327,7 +327,8 @@ def generate(
             GenerationConfig(**generation_config) if generation_config else {}
         )
         for prompt in prompt_samples:
-            prompt = f"{prompt}{eot_token}"
+            if eot_token:
+                prompt = f"{prompt}{eot_token}"
             # prompt = f"{prompt}"
             logger.debug(f"Tokenizing prompt: {prompt}")
             tokenized_prompt = tokenize_text(
@@ -336,13 +337,13 @@ def generate(
                 use_encode=use_encode,
                 return_tensors=return_tensors,
             ).to(device=device)
-            # tokenized_prompt = {
-            #     key: value.to(device) for key, value in tokenized_prompt.items()
-            # }
+            tokenized_prompt = {
+                key: value.to(device) for key, value in tokenized_prompt.items()
+            }
 
             logger.debug("Starting text generation.")
             generated_tokens = model.generate(
-                tokenized_prompt,
+                **tokenized_prompt,
                 generation_config=generation_config,  # Pass config if available
             )
 
