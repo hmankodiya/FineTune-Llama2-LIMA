@@ -22,7 +22,7 @@ from peft import (
 from utils import DEVICE
 from lima_dataset import EOT_TOKEN, tokenize_text
 
-ADDITIONAL_TOKENS_MAP = {"EOT_TOKEN": "[EOT]"}
+ADDITIONAL_TOKENS_MAP = {"EOT_TOKEN": EOT_TOKEN}
 
 # import evaluate
 # from sentiment_dataset import tokenize_text, _INDEX2LABEL
@@ -106,7 +106,7 @@ def load_pretrained_base_llama2_model(
         )
 
         if pad_token_id is not None:
-            model.config.pad_token_id = kwargs.get("pad_token_id")
+            model.config.pad_token_id = pad_token_id
         if tokenizer_length is not None:
             model.resize_token_embeddings(tokenizer_length)
 
@@ -327,7 +327,7 @@ def generate(
             GenerationConfig(**generation_config) if generation_config else {}
         )
         for prompt in prompt_samples:
-            prompt = f"{prompt} {eot_token}"
+            prompt = f"{prompt}{eot_token}"
             # prompt = f"{prompt}"
             logger.debug(f"Tokenizing prompt: {prompt}")
             tokenized_prompt = tokenize_text(

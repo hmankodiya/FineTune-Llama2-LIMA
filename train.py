@@ -58,7 +58,7 @@ if __name__ == "__main__":
         tokenizer_path=tokenizer_path,
         tokenizer_config=tokenizer_config,
     )
-    tokenizer.add_tokens([EOT_TOKEN])
+    # tokenizer.add_tokens([EOT_TOKEN])
 
     dataset_desc, (train_split_config, val_split_config, test_split_config) = (
         get_split_config(config)
@@ -81,8 +81,8 @@ if __name__ == "__main__":
         base_model_path=base_model_path,
         model_config=model_config,
     )
-    model.config.pad_token_id = tokenizer.pad_token_id
-    model.resize_token_embeddings(len(tokenizer))
+    # model.config.pad_token_id = tokenizer.pad_token_id
+    # model.resize_token_embeddings(len(tokenizer))
 
     if args.use_lora:
         lora_config = get_lora_config(config)
