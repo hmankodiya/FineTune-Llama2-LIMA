@@ -74,7 +74,10 @@ if __name__ == "__main__":
         f"Loaded Train Dataset: {dataset_desc}, Dataset Length: {len(train_dataset)} with sub_split_size {train_sub_split_size if train_sub_split_size else None}."
     )
 
-    model_name, model_path, base_model_path, model_config = get_model_config(config)
+    model_name, model_path, base_model_path, model_config = get_model_config(
+        config, pad_token_id=tokenizer.pad_token_id, tokenizer_length=len(tokenizer)
+    )
+
     model = load_model(
         model_string=model_name,
         model_path=model_path,

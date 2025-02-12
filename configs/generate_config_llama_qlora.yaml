@@ -4,34 +4,35 @@ dataset_config:
     dataset_path: GAIR/lima
     sub_split_size: null
 
-
 tokenizer_config:
   tokenizer_name: llama2
   tokenizer_path: "meta-llama/Llama-2-7b-hf"
+  add_bos_token: true
+  add_eos_token: false
   special_token_kwargs:
-    pad_token: eos_token
-    # additional_tokens: 
-    #   - EOT_TOKEN
+    pad_token: "[pad]"
+    additional_tokens:
+      - EOT_TOKEN
 
 # QLORA LLama finetuned
-# model_config:
-#   model_name: llama2-finetuned
-#   model_path: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-468
-#   base_model_path: meta-llama/Llama-2-7b-hf
-#   force_download: false
-#   device_map: cuda:0
-#   bnb_config:
-#     load_in_4bit: true
-#     bnb_4bit_quant_type: nf4
-#     bnb_4bit_compute_dtype: "float16"
-#     bnb_4bit_use_double_quant: false
-
 model_config:
-  model_name: llama2-base
-  # model_path: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-468
+  model_name: llama2-finetuned
   base_model_path: meta-llama/Llama-2-7b-hf
+  model_path: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-416
   force_download: false
   device_map: cuda:0
+  bnb_config:
+    load_in_4bit: true
+    bnb_4bit_quant_type: nf4
+    bnb_4bit_compute_dtype: "float16"
+    bnb_4bit_use_double_quant: false
+
+# model_config:
+#   model_name: llama2-base
+  # model_path: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-468
+  # base_model_path: meta-llama/Llama-2-7b-hf
+  # force_download: false
+  # device_map: cuda:0
   # bnb_config:
   #   load_in_4bit: true
   #   bnb_4bit_quant_type: nf4
@@ -48,15 +49,10 @@ model_config:
 #   repetition_penalty: 1.2
 
 generation_config:
-  max_length: 2048
-  top_p: 0.9
+  max_length: 500
+  top_p: 0.8
   temperature: 0.7
   num_beams: 1
   top_k: null
   do_sample: True
   repetition_penalty: 1.2
-
-generation_samples:
-  - this is a good product
-  - this is a bad product
-  - this is a very stupid product

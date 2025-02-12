@@ -220,7 +220,7 @@ def get_tokenizer_config(config):
         raise
 
 
-def get_model_config(config):
+def get_model_config(config, pad_token_id=None, tokenizer_length=None):
     """
     Extracts and validates the model configuration from the provided configuration dictionary.
 
@@ -237,6 +237,12 @@ def get_model_config(config):
     try:
         # Extract model_config
         model_config = config.get("model_config", {})
+
+        if pad_token_id:
+            model_config["pad_token_id"] = pad_token_id
+
+        if tokenizer_length:
+            model_config["tokenizer_length"] = tokenizer_length
 
         # Validate required fields
         if "model_name" not in model_config:

@@ -7,9 +7,11 @@ dataset_config:
 tokenizer_config:
   tokenizer_name: llama2
   tokenizer_path: "meta-llama/Llama-2-7b-hf"
+  add_bos_token: true
+  add_eos_token: true
   special_token_kwargs:
-    pad_token: eos_token
-    additional_tokens: 
+    pad_token: "[pad]"
+    additional_tokens:
       - EOT_TOKEN
 
 model_config:
@@ -41,14 +43,14 @@ lora_config:
 
 sft_trainer_config:
   # resume_from_checkpoint
-  resume_from_checkpoint: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-156
+  # resume_from_checkpoint: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-156
   # save related
   save_trained_model: true
-  save_strategy: 'epoch'
+  save_strategy: "epoch"
   save_total_limit: 2
   # save_steps: 25
   # log outputs
-  run_name: llama2_instruct_fulltrain_1
+  run_name: qlora_llama2_instruct_fulltrain_1
   report_to: tensorboard
   output_dir: "./TrainingLogs/"
   overwrite_output_dir: true
@@ -68,5 +70,7 @@ sft_trainer_config:
   seed: random
   warmup_ratio: 0.05
   learning_rate: 1.0E-5
-  lr_scheduler_type: cosine
+  lr_scheduler_type: linear
   optim: paged_adamw_32bit
+  adam_beta1: 0.9
+  adam_beta2: 0.95
