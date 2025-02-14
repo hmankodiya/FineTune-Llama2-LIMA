@@ -15,23 +15,37 @@ tokenizer_config:
       - EOT_TOKEN
 
 # QLORA LLama finetuned
+# model_config:
+#   model_name: llama2-finetuned
+#   base_model_path: meta-llama/Llama-2-7b-hf
+#   # model_path: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-728
+#   model_path: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/runs/qlora_llama2_instruct_fulltrain_1/model
+#   force_download: false
+#   device_map: cuda:0
+#   bnb_config:
+#     load_in_4bit: true
+#     bnb_4bit_quant_type: nf4
+#     bnb_4bit_compute_dtype: "float16"
+#     bnb_4bit_use_double_quant: false
+#   use_cache: False
+
+# LLama base
 model_config:
-  model_name: llama2-finetuned
+  model_name: llama2-base
   base_model_path: meta-llama/Llama-2-7b-hf
-  model_path: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-416
   force_download: false
   device_map: cuda:0
-  bnb_config:
-    load_in_4bit: true
-    bnb_4bit_quant_type: nf4
-    bnb_4bit_compute_dtype: "float16"
-    bnb_4bit_use_double_quant: false
+  # bnb_config:
+  #   load_in_4bit: true
+  #   bnb_4bit_quant_type: nf4
+  #   bnb_4bit_compute_dtype: "float16"
+  #   bnb_4bit_use_double_quant: false
   use_cache: False
 
 generation_config:
-  max_length: 500
+  max_new_tokens: 500
   top_p: 0.9
-  temperature: 0.7
+  temperature: 0.8
   num_beams: 1
   top_k: null
   do_sample: True

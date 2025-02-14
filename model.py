@@ -304,6 +304,7 @@ def generate(
     return_tensors: str = "pt",
     device: str = DEVICE,
     eot_token=EOT_TOKEN,
+    use_eot_token=True,
 ):
     """
     Generates text.
@@ -327,7 +328,7 @@ def generate(
             GenerationConfig(**generation_config) if generation_config else {}
         )
         for prompt in prompt_samples:
-            if eot_token:
+            if use_eot_token:
                 prompt = f"{prompt}{eot_token}"
             # prompt = f"{prompt}"
             logger.debug(f"Tokenizing prompt: {prompt}")
