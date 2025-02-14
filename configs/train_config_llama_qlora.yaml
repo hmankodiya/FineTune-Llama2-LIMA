@@ -24,6 +24,7 @@ model_config:
     bnb_4bit_quant_type: nf4
     bnb_4bit_compute_dtype: "float16"
     bnb_4bit_use_double_quant: false
+  use_cache: False
 
 # lora goes here
 lora_config:
@@ -43,7 +44,7 @@ lora_config:
 
 sft_trainer_config:
   # resume_from_checkpoint
-  # resume_from_checkpoint: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-156
+  resume_from_checkpoint: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-104
   # save related
   save_trained_model: true
   save_strategy: "epoch"
@@ -52,7 +53,7 @@ sft_trainer_config:
   # log outputs
   run_name: qlora_llama2_instruct_fulltrain_1
   report_to: tensorboard
-  output_dir: "./TrainingLogs/"
+  output_dir: "/home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs"
   overwrite_output_dir: true
   # train args
   max_seq_length: 2048

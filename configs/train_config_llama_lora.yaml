@@ -52,7 +52,7 @@ sft_trainer_config:
   # log outputs
   run_name: llama2_instruct_fulltrain_lora
   report_to: tensorboard
-  output_dir: "./TrainingLogs/"
+  output_dir: "/home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/"
   overwrite_output_dir: true
   # train args
   max_seq_length: 2048

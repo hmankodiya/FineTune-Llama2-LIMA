@@ -166,10 +166,11 @@ def get_dataset_config(dataset_config: dict):
 
         dataset_path = dataset_config.pop("dataset_path")
         sub_split_size = dataset_config.pop("sub_split_size")
+        other_configs = dataset_config.pop('other_configs', {})
         # Log the configuration
         logger.info(f"Loaded dataset configuration: {dataset_config}")
 
-        return dataset_path, sub_split_size, dataset_config
+        return dataset_path, sub_split_size, dataset_config, other_configs
 
     except Exception as e:
         logger.error(f"An error occurred while processing 'dataset_config': {e}")

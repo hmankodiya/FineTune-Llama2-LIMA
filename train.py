@@ -64,8 +64,8 @@ if __name__ == "__main__":
         get_split_config(config)
     )
 
-    train_dataset_path, train_sub_split_size, train_dataset_config = get_dataset_config(
-        train_split_config
+    train_dataset_path, train_sub_split_size, train_dataset_config, _ = (
+        get_dataset_config(train_split_config)
     )
     train_dataset = load_lima_dataset(
         train_dataset_path, "train", train_sub_split_size, **train_dataset_config
@@ -84,8 +84,6 @@ if __name__ == "__main__":
         base_model_path=base_model_path,
         model_config=model_config,
     )
-    # model.config.pad_token_id = tokenizer.pad_token_id
-    # model.resize_token_embeddings(len(tokenizer))
 
     if args.use_lora:
         lora_config = get_lora_config(config)
