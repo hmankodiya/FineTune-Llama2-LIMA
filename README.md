@@ -6,7 +6,7 @@ This repository contains the fine-tuning process of **Llama 2** using **QLoRA** 
 
 ## 🚀 Overview  
 - **Base Model**: Llama 2 (7 Billion)
-- **Fine-Tuning Method**: QLoRA (Quantized LoRA)  
+- **Fine-Tuning Method**: QLoRA (Quantized LoRA), LoRA(Vanilla LoRA)  
 - **Dataset**: LIMA - A high-quality instruction dataset  
 - **Objective**: Enhance Llama 2’s instruction-following capability while keeping computational requirements minimal  
 
