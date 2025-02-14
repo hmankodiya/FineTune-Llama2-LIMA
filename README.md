@@ -13,7 +13,7 @@ This repository contains the fine-tuning process of **Llama 2** using **QLoRA** 
 ## 📂 Results  
 # 📉 Training Loss Curve for Instruction-Tuned Model
 
-![loss_curve](assets/qloara_llama2_loss_curve.png)
+![loss_curve](assets/qlora_llama2_loss_curve.png)
 
 The graph below represents the training loss curve for instruction fine-tuning on the LIMA dataset using a causal language modeling (CLM) objective.
 
