@@ -19,11 +19,6 @@ model_config:
   base_model_path: meta-llama/Llama-2-7b-hf
   force_download: false
   device_map: cuda:0
-  # bnb_config:
-  #   load_in_4bit: true
-  #   bnb_4bit_quant_type: nf4
-  #   bnb_4bit_compute_dtype: "float16"
-  #   bnb_4bit_use_double_quant: false
 
 # lora goes here
 lora_config:

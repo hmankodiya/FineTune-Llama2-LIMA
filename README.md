@@ -13,11 +13,35 @@ This repository contains the fine-tuning process of **Llama 2** using **QLoRA** 
 ## 📂 Results  
 # 📉 Training Loss Curve for Instruction-Tuned Model
 
+
+## Loss in Causal Language Modeling (CLM)
+
+In Causal Language Modeling (CLM), the model learns to predict the next token in a sequence given the previous tokens. The primary loss function used is **Negative Log-Likelihood (NLL) Loss**, which measures how well the predicted probability distribution aligns with the actual target tokens. Mathematically, the NLL loss for a sequence of tokens $$( X = {x_1, x_2, ..., x_T} )$$ is computed as:
+
+$$
+\mathcal{L} = - \sum_{t=1}^{T} \log P(x_t | x_{1:t-1})
+$$
+
+
+where $$(P(x_t | x_{1:t-1}))$$ represents the model’s predicted probability for token, $$(x_t)$$ conditioned on all previous tokens. The lower the loss, the better the model is at predicting the next token.
+
+During instruction fine-tuning on datasets like LIMA, the model adapts to structured responses, improving its generalization to follow human-like instructions.
+
+---
+
+## QLoRA Loss Curve
+
+The graph below represents the **training loss curve** for instruction fine-tuning using **QLoRA (Quantized Low-Rank Adapters)** with LLaMA-2 on the LIMA dataset.  
+
 ![loss_curve](assets/qlora_llama2_loss_curve.png)
 
-The graph below represents the training loss curve for instruction fine-tuning on the LIMA dataset using a causal language modeling (CLM) objective.
 
-During training, the model optimizes the negative log-likelihood (NLL) loss, predicting the next token given previous tokens. As expected, the loss decreases over epochs, indicating that the model is learning from the instruction-tuned dataset.
+<!-- ## LoRA Loss Curve
+
+The graph below represents the **training loss curve** for instruction fine-tuning using **LoRA (Low-Rank Aware Adaption)** with LLaMA-2 on the LIMA dataset.  
+
+![loss_curve](assets/qlora_llama2_loss_curve.png) -->
+
 
 ## 🔍 Comparison of Fine-Tuned Models
 
