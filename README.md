@@ -36,11 +36,11 @@ The graph below represents the **training loss curve** for instruction fine-tuni
 ![loss_curve](assets/qlora_llama2_loss_curve.png)
 
 
-<!-- ## LoRA Loss Curve
+## LoRA Loss Curve
 
 The graph below represents the **training loss curve** for instruction fine-tuning using **LoRA (Low-Rank Aware Adaption)** with LLaMA-2 on the LIMA dataset.  
 
-![loss_curve](assets/qlora_llama2_loss_curve.png) -->
+![loss_curve](assets/lora_llama2_loss_curve.png)
 
 
 ## 🔍 Comparison of Fine-Tuned Models
@@ -109,7 +109,29 @@ Now, you want to learn how to get to the end of the maze as quickly as possible.
 
 🤖 **LoRA Fine-Tuned Model Output**:
 ```text
-comming soon
+What is reinforcement learning? [EOT] 
+Reinforcement learning is an approach to learning that focuses on the improvement of performance on a task. It does this by rewarding correct actions and punishing incorrect ones. This means that, unlike many other machine learning techniques, it does not require a lot of labels or training examples.
+
+Reinforcement learning is typically used in situations where the correct answer is not always known, and where there is no clear way to determine what is correct. For example, if you wanted to teach a robot to play Pong, you could use reinforcement learning to teach it to play as well as possible.
+
+Reinforcement learning can be divided into two main categories: supervised and unsupervised. In supervised reinforcement learning, the correct answer is known in advance, and the goal is to learn to produce the correct answer. In unsupervised reinforcement learning, there is no known correct answer, and the goal is to learn to produce the best possible answer.
+
+Reinforcement learning is a powerful tool for solving complex problems, and it has been used to solve a wide range of problems, from playing games to driving cars. If you're interested in learning more about reinforcement learning, there are many resources available, including books, articles, and online courses. 
+
+### Examples of reinforcement learning
+
+Here are some examples of how reinforcement learning is used in the real world:
+
+* In autonomous cars, reinforcement learning is used to teach the car to drive safely in different environments. The car is rewarded for taking safe actions, and punished for taking unsafe actions.
+
+* In games, reinforcement learning is used to teach a computer to play the game. The computer is rewarded for making correct moves, and punished for making incorrect moves.
+
+* In robotics, reinforcement learning is used to teach robots to perform tasks. The robot is rewarded for performing the task correctly, and punished for performing the task incorrectly.
+
+* In financial markets, reinforcement learning is used to trade stocks and other financial instruments. The trader is rewarded for making profits, and punished for making losses.
+
+* In customer service, reinforcement learning is used to teach chatbots to respond to customer queries. The chatbot is rewarded for providing accurate and helpful responses
+
 ```
 
 
@@ -147,7 +169,33 @@ In a black hole, the curvature of space-time
 
 🤖 **LoRA Fine-Tuned Model Output**:
 ```text
-Comming Soon
+Explain black hole singularity. [EOT] 
+
+The singularity of a black hole is an imaginary point, called the event horizon. It is the point in spacetime at which the curvature of spacetime goes to infinity and no matter or radiation can escape it. The singularity is so named because when a black hole is approximated as a point mass, the stress-energy tensor goes to infinity. It is for this reason that singularities are a problem in general relativity.
+
+The main reason for the existence of the singularity is that the gravitational force is attractive. The gravitational force is the warping of spacetime, and as spacetime is curved by the mass of the black hole, the singularity forms.
+
+It is worth noting that a singularity is not required for a black hole to exist. Black holes can also be formed from non-singular matter, such as a star that collapses under its own weight. The collapse of the matter forms a black hole without a singularity.
+
+It is also possible to form a black hole without any singularity at all, if the matter is removed from the centre of the collapsing star before it becomes a black hole. This is known as a naked singularity.
+
+There are some theoretical models of the universe which suggest that the singularity will be resolved at the end of the universe, and the singularity will be replaced by a bubble. The idea is that there will be a "big crunch", and then the universe will expand again in a "big bounce".
+
+Here is a video that talks about the black hole singularity in more detail:
+
+Here is a link to the video: https://www.youtube.com/watch?v=0sX3iIxFmQw
+
+This video is a great resource for anyone interested in learning more about black hole singularities.
+
+Here is another video that talks about black hole singularities:
+
+Here is a link to the video: https://www.youtube.com/watch?v=vqIH_Mi0Vw8
+
+This video is a great resource for anyone interested in learning more about the concept of black hole singularity.
+
+And here is a link to an article that talks about black hole singularity:
+
+Here is a link to the article: https://www.quora.com/Is
 ```
 
 ## ⚙️ Generation Configuration

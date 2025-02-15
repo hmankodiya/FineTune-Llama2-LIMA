@@ -16,7 +16,7 @@ tokenizer_config:
 
 model_config:
   model_name: llama2-base
-  model_path: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/checkpoint-2060
+  model_path: /home/hmankodi/instruct_tuning/FineTune-Llama2-LIMA/TrainingLogs/runs/llama2_instruct_fulltrain_lora/model
   base_model_path: meta-llama/Llama-2-7b-hf
   force_download: false
   device_map: cuda:0
